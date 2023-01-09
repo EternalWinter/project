@@ -1,0 +1,5 @@
+export enum TodoStatus {
+  COMPLETED = "COMPLETED",
+  INPROGRESS = "INPROGRESS",
+  PENDING = "PENDING",
+}
