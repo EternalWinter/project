@@ -3,7 +3,7 @@ import { Prisma } from "@prisma/client";
 
 import { TodoStatus } from "../dto/Status.dto";
 import { Todo } from "../dto/Todo.dto";
-import { TodoService } from "./todo.service";
+import { TodoService } from "../services/todo.service";
 import { UpdateTodoInput } from "../inputs/UpdateTodo";
 import { DeleteTodoInput } from "../inputs/DeleteTodo";
 
