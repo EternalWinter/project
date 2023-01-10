@@ -1,22 +1,24 @@
-import { Field } from '@nestjs/graphql';
-import { TodoStatus } from './Status.dto';
+import { Field, InputType, ObjectType, Int } from "@nestjs/graphql";
+import { TodoStatus } from "./Status.dto";
 
+@InputType()
+@ObjectType("TodoOutput")
 export class Todo {
-	@Field(() => Number)
-	id: number;
+  @Field(() => Int)
+  id: number;
 
-	@Field(() => String)
-	name: string;
+  @Field(() => String)
+  name: string;
 
-	@Field(() => String)
-	description: string;
+  @Field(() => String)
+  description: string;
 
-	@Field(() => Number)
-	expires: number;
+  @Field(() => Int)
+  expires: number;
 
-	@Field(() => Boolean)
-	isCompleted: boolean;
+  @Field(() => Boolean)
+  isCompleted: boolean;
 
-	@Field(() => TodoStatus)
-	status: TodoStatus;
+  @Field(() => TodoStatus)
+  status: TodoStatus;
 }

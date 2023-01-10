@@ -1,11 +1,11 @@
-import { Resolver, Mutation, Query, Args, ResolveField } from "@nestjs/graphql";
-import { Prisma } from "@prisma/client";
+import { Resolver, Mutation, Query, Args } from "@nestjs/graphql";
 
 import { TodoStatus } from "../dto/Status.dto";
 import { Todo } from "../dto/Todo.dto";
 import { TodoService } from "../services/todo.service";
 import { UpdateTodoInput } from "../inputs/UpdateTodo";
 import { DeleteTodoInput } from "../inputs/DeleteTodo";
+import { UpdateDataInput } from '../inputs/UpdateDataInput';
 
 @Resolver("Todo")
 export class TodoResolver {
@@ -37,7 +37,7 @@ export class TodoResolver {
   }
 
   @Mutation(() => Todo)
-  async createTodo(@Args("data", { nullable: false }) data: Todo) {
+  async createTodo(@Args("data", { nullable: false }) data: UpdateDataInput) {
     return this.TodoService.createTodo(data);
   }
 

@@ -11,6 +11,7 @@ import { TodoModule } from "./core/todos/todo.module";
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), "src/schema.gql"),
       sortSchema: true,
+      playground: true,
     }),
     TodoModule,
   ],

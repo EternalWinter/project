@@ -1,11 +1,12 @@
-import { ObjectType, Field } from "@nestjs/graphql";
-import { Prisma } from "@prisma/client";
+import { Field, InputType } from "@nestjs/graphql";
+import { WhereInput } from './WhereInput';
+import { UpdateDataInput } from './UpdateDataInput';
 
-@ObjectType()
+@InputType()
 export class UpdateTodoInput {
-  @Field({ nullable: true })
-  where: Prisma.TodoWhereUniqueInput;
+  @Field(() => WhereInput)
+  where: WhereInput;
 
-  @Field({ nullable: false })
-  data: Prisma.TodoUpdateInput;
+  @Field(() => UpdateDataInput, { nullable: false })
+  data: UpdateDataInput;
 }
