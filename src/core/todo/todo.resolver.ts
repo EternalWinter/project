@@ -1,11 +1,11 @@
 import { Resolver, Mutation, Query, Args } from "@nestjs/graphql";
 
-import { TodoStatus } from "../dto/Status.dto";
-import { Todo } from "../dto/Todo.dto";
-import { TodoService } from "../services/todo.service";
-import { UpdateTodoInput } from "../inputs/UpdateTodo";
-import { DeleteTodoInput } from "../inputs/DeleteTodo";
-import { UpdateDataInput } from '../inputs/UpdateDataInput';
+import { TodoStatus } from "./dto/common/Status.dto";
+import { Todo } from "./dto/generics/Todo.dto";
+import { TodoService } from "./todo.service";
+import { UpdateInput } from "./dto/inputs/UpdateInput";
+import { DeleteTodoInput } from "./dto/inputs/DeleteInput";
+import { UpdateDataInput } from './dto/inputs/DataInput';
 
 @Resolver("Todo")
 export class TodoResolver {
@@ -43,8 +43,8 @@ export class TodoResolver {
 
   @Mutation(() => Todo)
   async updateTodo(
-    @Args("params", { type: () => UpdateTodoInput })
-    params: UpdateTodoInput
+    @Args("params", { type: () => UpdateInput })
+    params: UpdateInput
   ) {
     return this.TodoService.updateTodo(params);
   }

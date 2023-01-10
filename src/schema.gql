@@ -9,7 +9,7 @@ input DeleteTodoInput {
 type Mutation {
   createTodo(data: UpdateDataInput!): TodoOutput!
   deleteTodo(where: DeleteTodoInput!): TodoOutput!
-  updateTodo(params: UpdateTodoInput!): TodoOutput!
+  updateTodo(params: UpdateInput!): TodoOutput!
 }
 
 type Query {
@@ -50,7 +50,7 @@ input UpdateDataInput {
   status: TodoStatus!
 }
 
-input UpdateTodoInput {
+input UpdateInput {
   data: UpdateDataInput!
   where: WhereInput!
 }

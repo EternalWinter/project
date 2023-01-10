@@ -1,5 +1,5 @@
 import { Field, InputType, ObjectType, Int } from "@nestjs/graphql";
-import { TodoStatus } from "./Status.dto";
+import { TodoStatus } from "../common/Status.dto";
 
 @InputType()
 @ObjectType("TodoOutput")

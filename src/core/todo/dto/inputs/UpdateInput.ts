@@ -1,9 +1,9 @@
 import { Field, InputType } from "@nestjs/graphql";
 import { WhereInput } from './WhereInput';
-import { UpdateDataInput } from './UpdateDataInput';
+import { UpdateDataInput } from './DataInput';
 
 @InputType()
-export class UpdateTodoInput {
+export class UpdateInput {
   @Field(() => WhereInput)
   where: WhereInput;
 

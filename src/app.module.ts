@@ -3,7 +3,7 @@ import { GraphQLModule } from "@nestjs/graphql";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { join } from "path";
 
-import { TodoModule } from "./core/todos/todo.module";
+import { TodoModule } from "./core/todo/todo.module";
 
 @Module({
   imports: [
