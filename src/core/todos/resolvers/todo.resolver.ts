@@ -1,58 +1,51 @@
-import { Resolver, Mutation, Query, Args, ResolveField } from "@nestjs/graphql";
-import { Prisma } from "@prisma/client";
+import { Resolver, Mutation, Query, Args } from "@nestjs/graphql";
+import { Prisma, Status, Todo } from "@prisma/client";
 
-import { TodoStatus } from "../dto/Status.dto";
-import { Todo } from "../dto/Todo.dto";
 import { TodoService } from "../services/todo.service";
-import { UpdateTodoInput } from "../inputs/UpdateTodo";
-import { DeleteTodoInput } from "../inputs/DeleteTodo";
 
 @Resolver("Todo")
 export class TodoResolver {
   constructor(private readonly TodoService: TodoService) {}
 
-  @Query(() => Todo)
+  @Query()
   async getTodo(
-    @Args("id", {
-      type: () => Number,
-    })
+    @Args("id")
     id
   ) {
     return this.TodoService.findOne(id);
   }
 
-  @Query(() => [Todo])
+  @Query()
   async getTodos() {
     return this.TodoService.findAll();
   }
 
-  @Query(() => [Todo])
+  @Query()
   async getTodosByStatus(
-    @Args("status", {
-      type: () => TodoStatus,
-    })
-    status
+    @Args("status")
+    status: Status
   ) {
     return this.TodoService.findByStatus(status);
   }
 
-  @Mutation(() => Todo)
+  @Mutation()
   async createTodo(@Args("data", { nullable: false }) data: Todo) {
     return this.TodoService.createTodo(data);
   }
 
-  @Mutation(() => Todo)
+  @Mutation()
   async updateTodo(
-    @Args("params", { type: () => UpdateTodoInput })
-    params: UpdateTodoInput
+    @Args("params")
+    params: {
+      where: Prisma.TodoWhereUniqueInput;
+      data: Prisma.TodoUpdateInput;
+    }
   ) {
     return this.TodoService.updateTodo(params);
   }
 
-  @Mutation(() => Todo)
-  async deleteTodo(
-    @Args("where", { type: () => DeleteTodoInput }) where: DeleteTodoInput
-  ) {
-    return this.TodoService.deleteTodo(where.where);
+  @Mutation()
+  async deleteTodo(@Args("where") where: Prisma.TodoWhereUniqueInput) {
+    return this.TodoService.deleteTodo(where); 
   }
 }

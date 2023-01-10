@@ -9,8 +9,12 @@ import { TodoModule } from "./core/todos/todo.module";
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: join(process.cwd(), "src/schema.gql"),
-      sortSchema: true,
+      typePaths: ["./**/**/*.graphql"],
+      definitions: {
+        path: join(process.cwd(), "src/core/graphql.ts"),
+        outputAs: 'class',
+      },
+      playground: true,
     }),
     TodoModule,
   ],

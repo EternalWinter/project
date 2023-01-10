@@ -1,0 +1,44 @@
+type Todo {
+	id: Int
+	name: String
+	description: String
+	expires: Int
+	isCompleted: Boolean
+	status: Status
+}
+
+input Todo {
+	id: Int
+	name: String
+	description: String
+	expires: Int
+	isCompleted: Boolean
+	status: Status
+}
+
+enum Status {
+	COMPLETED
+	INPROGRESS
+	PENDING
+}
+
+type UpdateTodoParamWhere {
+	id: Int
+}
+
+type UpdateTodoParams {
+	where: UpdateTodoParamWhere
+	data: Todo
+}
+
+type Query {
+	getTodo(id: Int): Todo
+	getTodos: [Todo]
+	getTodosByStatus(status: Status): [Todo]
+}
+
+type Mutation {
+	createTodo(data: Todo): Todo
+	updateTodo(params: UpdateTodoParams): Todo
+	deleteTodo(where: UpdateTodoParamWhere): Todo
+}
